@@ -59,7 +59,7 @@ def main() -> int:
                 continue
 
             last_frame_at = time.monotonic()
-            cv2.imshow("UDP video", frame)
+            cv2.imshow("Box 1 Live Stream", frame)
             key = cv2.waitKey(1) & 0xFF
             if key == ord("q") or key == 27:
                 return 0
