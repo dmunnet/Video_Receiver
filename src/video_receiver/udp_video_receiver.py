@@ -12,7 +12,7 @@ import time
 import cv2
 import numpy as np
 
-DEFAULT_PORTS = (5000, 5001, 5002, 5003, 5004, 5005)
+DEFAULT_PORTS = (5000, 5001)
 READ_TIMEOUT_MILLISECONDS = 1000
 STREAM_IDLE_TIMEOUT_SECONDS = 3
 
@@ -67,7 +67,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--host",
-        default="10.203.130.142",
+        default="172.30.18.148", #"10.203.130.142",
         help="Local interface to listen on (default: all interfaces)",
     )
     parser.add_argument(
@@ -75,7 +75,7 @@ def main() -> int:
         type=int,
         action="append",
         help="UDP port to listen on; may be repeated "
-        "(default: 5000, 5001, 5002, 5003, 5004, 5005)",
+        "(default: 5000, 5001)",
     )
     args = parser.parse_args()
 
