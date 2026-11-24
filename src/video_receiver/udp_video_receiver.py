@@ -75,7 +75,7 @@ def main() -> int:
         type=int,
         action="append",
         help="UDP port to listen on; may be repeated "
-        "(default: 5000, 5001)",
+        "(default: 5000, 5001, 5002, 5003, 5004, 5005)",
     )
     args = parser.parse_args()
 
@@ -104,6 +104,7 @@ def main() -> int:
         "Press q or Esc to quit."
     )
 
+    has_received_stream = False
     try:
         while True:
             now = time.monotonic()
@@ -114,6 +115,7 @@ def main() -> int:
                     pass
                 else:
                     stream.last_frame_at = frame_at
+                    has_received_stream = True
                     if not stream.window_open:
                         print(f"Video stream detected on UDP port {stream.port}.")
                         stream.window_open = True
@@ -128,6 +130,11 @@ def main() -> int:
                     cv2.destroyWindow(stream.window_name)
                     stream.window_open = False
                     stream.last_frame_at = None
+
+            if has_received_stream and not any(
+                stream.window_open for stream in open_streams
+            ):
+                return 0
 
             key = cv2.waitKey(1) & 0xFF
             if key == ord("q") or key == 27:
