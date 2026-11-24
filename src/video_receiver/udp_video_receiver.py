@@ -17,7 +17,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--host",
-        default="10.203.130.142",
+        default="172.30.124.54",   # "10.203.130.142"
         help="Local interface to listen on (default: all interfaces)",
     )
     parser.add_argument("--port", type=int, default=5000, help="UDP port (default: 5000)")
